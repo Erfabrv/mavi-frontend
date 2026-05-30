@@ -12,15 +12,10 @@ export default function HomeScreen() {
   const tapId = useRef(0);
 
   const handleClaim = async () => {
-  if (!ok) return;
-  claim();
-  addCoins(totalIncome);
-  try {
-    await claimDaily(totalIncome);
-  } catch (err) {
-    console.error("Claim failed:", err);
-  }
-};
+    if (!ok) return;
+    claim();
+    addCoins(totalIncome);
+  };
 
   const handleTap = useCallback((e) => {
     if (energy <= 0) return;
@@ -44,7 +39,9 @@ export default function HomeScreen() {
       : "linear-gradient(90deg,#cc1a1a,#ff4444)";
 
   return (
-    <>
+    <div style={{ display:"flex", flexDirection:"column",
+      height:"100%", overflow:"hidden" }}>
+
       {/* coin display */}
       <div className="coin-row">
         <CoinIcon size={46}/>
@@ -82,7 +79,7 @@ export default function HomeScreen() {
       {/* business income indicator */}
       {cityIncome > 0 && (
         <div style={{ margin:"0 16px 4px", display:"flex", alignItems:"center",
-          gap:6, padding:"6px 12px",
+          gap:6, padding:"6px 12px", flexShrink:0,
           background:"#07091a88", borderRadius:10,
           border:"1px solid #0d2040" }}>
           <svg width="11" height="11" viewBox="0 0 24 24" fill="#4ade80">
@@ -102,12 +99,12 @@ export default function HomeScreen() {
       {/* tap area */}
       <div className="cat-area" onClick={handleTap}>
         <div
-          className={tapped ? "cat-idle-paused" : "cat-idle"}
+          className="cat-idle"
           style={{
-            transform: "scale(1)",
+            transform: "scale(0.85)",
             transformOrigin: "center bottom",
           }}>
-          <CatDisplay character={activeChar} scale={tapped ? 0.97 : 1}/>
+          <CatDisplay character={activeChar} scale={1}/>
         </div>
         {tapEffects.map(t => (
           <div key={t.id} className="tap-effect"
@@ -136,6 +133,6 @@ export default function HomeScreen() {
             style={{ width:(energyPct*100)+"%", background:energyColor }}/>
         </div>
       </div>
-    </>
+    </div>
   );
 }
