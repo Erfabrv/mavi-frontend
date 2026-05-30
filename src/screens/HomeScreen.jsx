@@ -99,11 +99,12 @@ export default function HomeScreen() {
       {/* tap area */}
       <div className="cat-area" onClick={handleTap}>
         <div
-          className="cat-idle"
-          style={{
-            transform: "scale(0.85)",
-            transformOrigin: "center bottom",
-          }}>
+  className="cat-idle"
+  style={{
+    transform: "scale(0.95)",
+    transformOrigin: "center bottom",
+    marginBottom: "-20px",
+  }}>
           <CatDisplay character={activeChar} scale={1}/>
         </div>
         {tapEffects.map(t => (

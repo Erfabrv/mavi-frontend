@@ -67,16 +67,15 @@ export const CSS = `
   }
   .faq-btn:hover{border-color:#00D4FF44;color:#00D4FF;}
 
-  .coin-row{display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 20px 4px;position:relative;z-index:10;flex-shrink:0;}
-  .coin-number{font-family:'Bebas Neue',monospace;font-size:52px;font-weight:400;color:#fff;letter-spacing:2px;text-shadow:0 0 40px #00D4FF33,0 2px 0 #00000088;line-height:1;}
+  .coin-row{display:flex;align-items:center;justify-content:center;gap:10px;padding:6px 20px 2px;position:relative;z-index:10;flex-shrink:0;}
+  .coin-number{font-family:'Bebas Neue',monospace;font-size:38px;font-weight:400;color:#fff;letter-spacing:2px;text-shadow:0 0 40px #00D4FF33,0 2px 0 #00000088;line-height:1;}
 
-  .income-wrap{margin:6px 16px 6px;position:relative;z-index:10;display:flex;gap:8px;flex-shrink:0;}
-  .income-card{flex:1;background:#07091acc;border:1px solid #101830;border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:10px;backdrop-filter:blur(10px);}
-  .inc-label{font-size:10px;color:#3a5070;font-weight:600;letter-spacing:.5px;text-transform:uppercase;}
-  .inc-val{font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:#f5c518;margin-top:1px;}
+  .income-wrap{margin:4px 16px 4px;position:relative;z-index:10;display:flex;gap:8px;flex-shrink:0;}
+  .income-card{flex:1;background:#07091acc;border:1px solid #101830;border-radius:12px;padding:7px 12px;display:flex;align-items:center;gap:8px;backdrop-filter:blur(10px);}
+  .inc-label{font-size:9px;color:#3a5070;font-weight:600;letter-spacing:.5px;text-transform:uppercase;}
+  .inc-val{font-family:'Orbitron',monospace;font-size:12px;font-weight:700;color:#f5c518;margin-top:1px;}
 
-  .claim-card{background:#07091acc;border:1px solid #101830;border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;backdrop-filter:blur(10px);min-width:110px;}
-  .timer-val{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:#00D4FF;letter-spacing:.5px;}
+  .claim-card{background:#07091acc;border:1px solid #101830;border-radius:12px;padding:7px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;backdrop-filter:blur(10px);min-width:100px;}
   .claim-btn{background:linear-gradient(135deg,#0055cc,#00D4FF);border:none;border-radius:8px;padding:6px 14px;color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;cursor:pointer;letter-spacing:.5px;width:100%;animation:pulseGlow 2s ease-in-out infinite;}
   .claim-btn:disabled{background:#0d0d22;color:#222;animation:none;cursor:default;}
 
@@ -85,7 +84,7 @@ export const CSS = `
   .cat-idle-paused{animation:none;}
   .tap-effect{position:absolute;pointer-events:none;animation:tapFloat .7s ease-out forwards;font-family:'Orbitron',monospace;font-size:20px;font-weight:700;color:#00D4FF;text-shadow:0 0 12px #00D4FF;z-index:50;}
 
-  .energy-section{padding:0 20px 10px;position:relative;z-index:10;flex-shrink:0;}
+  .energy-section{padding:0 20px 6px;position:relative;z-index:10;flex-shrink:0;}
   .energy-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;}
   .energy-num{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:#00D4FF;}
   .energy-track{height:6px;background:#060610;border-radius:4px;overflow:hidden;border:1px solid #101828;}
