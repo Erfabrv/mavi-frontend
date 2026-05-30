@@ -101,15 +101,15 @@ export default function HomeScreen() {
         <div
   className="cat-idle"
   style={{
-  transform: "scale(1.1)",
+  transform: "scale(0.8)",
   transformOrigin: "center bottom",
-  marginBottom: "-40px",
+  marginBottom: "-30px",
 }}>
-          <CatDisplay character={activeChar} scale={1}/>
+          <CatDisplay character={activeChar} scale={0.92}/>
         </div>
         {tapEffects.map(t => (
           <div key={t.id} className="tap-effect"
-            style={{ left:t.x - 14, top:t.y - 32 }}>+1</div>
+            style={{ left:t.x - 14, top:t.y - 35 }}>+1</div>
         ))}
       </div>
 
