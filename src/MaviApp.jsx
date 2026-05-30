@@ -61,11 +61,13 @@ function InnerApp() {
           <button className="faq-btn">FAQ</button>
         </div>
 
-        {activeTab === "home"    && <HomeScreen/>}
-        {activeTab === "city"    && <CityScreen/>}
-        {activeTab === "income"  && <IncomeScreen/>}
-        {activeTab === "tasks"   && <TasksScreen/>}
-        {activeTab === "profile" && <ProfileScreen/>}
+       <div style={{ flex:1, overflowY:"auto", display:"flex", flexDirection:"column" }}>
+  {activeTab === "home"    && <HomeScreen/>}
+  {activeTab === "city"    && <CityScreen/>}
+  {activeTab === "income"  && <IncomeScreen/>}
+  {activeTab === "tasks"   && <TasksScreen/>}
+  {activeTab === "profile" && <ProfileScreen/>}
+</div>
 
         <div className="bottom-nav">
           {TABS.map(({ id, label, ic }) => {

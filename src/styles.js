@@ -11,21 +11,52 @@ export const CSS = `
   @keyframes pulseGlow{0%,100%{box-shadow:0 0 12px #00D4FF44}50%{box-shadow:0 0 28px #00D4FFaa}}
 
   .shell{
-    width:390px;height:844px;border-radius:44px;overflow:hidden;
-    position:relative;display:flex;flex-direction:column;
-    border:1px solid #0e1a30;
-    box-shadow:0 0 80px #00D4FF0f,0 60px 160px #00000099;
-    animation:slideUp .45s ease;
-    background-image:url('/bg.jpg');background-size:cover;
-    background-position:center top;background-color:#03040e;
-  }
+  width:100vw;
+  height:100dvh;
+  border-radius:0;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  border:none;
+  box-shadow:none;
+  animation:slideUp .45s ease;
+  background-image:url('/bg.jpg');
+  background-size:cover;
+  background-position:center top;
+  background-color:#03040e;
+}
   .shell::before{
     content:'';position:absolute;inset:0;border-radius:inherit;
     background:linear-gradient(180deg,rgba(2,3,14,.72) 0%,rgba(2,3,14,.38) 30%,rgba(2,3,14,.28) 55%,rgba(2,3,14,.82) 100%);
     z-index:0;
   }
 
-  .header{display:flex;align-items:center;justify-content:space-between;padding:20px 18px 12px;position:relative;z-index:10;}
+  .header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px 18px 12px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:linear-gradient(180deg,#03040eee 0%,#03040e99 100%);
+  backdrop-filter:blur(10px);
+  flex-shrink:0;
+}
+
+.bottom-nav{
+  background:#04040ecc;
+  border-top:1px solid #0d1226;
+  padding:10px 4px 22px;
+  display:flex;
+  justify-content:space-around;
+  position:sticky;
+  bottom:0;
+  z-index:100;
+  backdrop-filter:blur(14px);
+  flex-shrink:0;
+}
   .logo-wrap{position:absolute;left:50%;transform:translateX(-50%);top:16px;z-index:11;}
 
   .faq-btn{
