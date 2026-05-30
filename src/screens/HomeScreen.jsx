@@ -76,30 +76,10 @@ export default function HomeScreen() {
         </div>
       </div>
 
-      {/* business income indicator */}
-      {cityIncome > 0 && (
-        <div style={{ margin:"0 16px 4px", display:"flex", alignItems:"center",
-          gap:6, padding:"6px 12px", flexShrink:0,
-          background:"#07091a88", borderRadius:10,
-          border:"1px solid #0d2040" }}>
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="#4ade80">
-            <path d="M15 11V5l-3-3-3 3v2H3v14h18V11h-6z"/>
-          </svg>
-          <span style={{ fontSize:10, color:"#3a6080",
-            fontFamily:"'Rajdhani',sans-serif", fontWeight:600 }}>
-            Business income:
-          </span>
-          <span style={{ fontSize:10, color:"#4ade80",
-            fontFamily:"'Orbitron',monospace", fontWeight:700 }}>
-            +{cityIncome.toLocaleString("en-US")}
-          </span>
-        </div>
-      )}
-
       {/* tap area */}
       <div className="cat-area" onClick={handleTap}>
         <div
-  className="cat-idle"
+  className={tapped ? "cat-idle-paused" : "cat-idle"}
   style={{
   transform: "scale(0.8)",
   transformOrigin: "center bottom",
