@@ -95,33 +95,31 @@ export default function HomeScreen() {
       </div>
 
       {/* energy bar */}
-      <div style={{ padding:"0 20px 14px", flexShrink:0, zIndex:10 }}>
-        <div style={{ display:"flex", alignItems:"center",
-          justifyContent:"space-between", marginBottom:5 }}>
-          <div style={{ display:"flex", alignItems:"center", gap:5 }}>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="#00D4FF">
-              <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
-            </svg>
-            <span style={{ fontFamily:"'Orbitron',monospace", fontSize:10,
-              fontWeight:700, color:"#00D4FF" }}>
-              {energy} / {MAX_ENERGY}
-            </span>
-          </div>
-          {energy === 0 && (
-            <span style={{ fontSize:9, color:"#cc3333",
-              fontFamily:"'Orbitron',monospace", letterSpacing:.5 }}>
-              RECHARGING
-            </span>
-          )}
-        </div>
-        <div style={{ height:2, background:"#ffffff11",
-          borderRadius:2, overflow:"hidden" }}>
-          <div style={{ height:"100%", width:(energyPct*100)+"%",
-            background:energyColor, borderRadius:2,
-            transition:"width .4s ease",
-            boxShadow:"0 0 6px #00D4FF55" }}/>
-        </div>
-      </div>
+<div style={{ padding:"0 0 16px", flexShrink:0, zIndex:10,
+  display:"flex", justifyContent:"center" }}>
+  <div style={{
+    display:"flex", alignItems:"center", gap:8,
+    background:"#1a2a4a99",
+    backdropFilter:"blur(10px)",
+    borderRadius:20, padding:"6px 14px",
+    border:"1px solid #ffffff15",
+  }}>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="#00D4FF">
+      <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+    </svg>
+    <span style={{ fontFamily:"'Orbitron',monospace", fontSize:11,
+      fontWeight:700, color:"#ffffff",
+      letterSpacing:.5 }}>
+      {energy}/{MAX_ENERGY}
+    </span>
+    {energy === 0 && (
+      <span style={{ fontSize:9, color:"#ff4444",
+        fontFamily:"'Orbitron',monospace", letterSpacing:.5 }}>
+        RECHARGING
+      </span>
+    )}
+  </div>
+</div>
 
     </div>
   );
