@@ -1,12 +1,11 @@
-const BASE_URL = "http://localhost:3001/api";
+const BASE_URL = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api`
+  : "http://localhost:3001/api";
 
-// این تابع initData رو از تلگرام میگیره
-// تا زمان تست از یه مقدار موقت استفاده میکنیم
 const getInitData = () => {
   if (window.Telegram?.WebApp?.initData) {
     return window.Telegram.WebApp.initData;
   }
-  // برای تست لوکال
   return "test_mode";
 };
 
@@ -15,12 +14,10 @@ const headers = () => ({
   "x-telegram-init-data": getInitData(),
 });
 
-// ── Auth ───────────────────────────────────────────────────────
 export const loginUser = () =>
   fetch(`${BASE_URL}/auth/login`, { method:"POST", headers:headers() })
     .then(r => r.json());
 
-// ── User ───────────────────────────────────────────────────────
 export const getMe = () =>
   fetch(`${BASE_URL}/user/me`, { headers:headers() })
     .then(r => r.json());
@@ -43,14 +40,12 @@ export const buyCharacter = (charId, price) =>
     body: JSON.stringify({ charId, price }),
   }).then(r => r.json());
 
-// ── Business ───────────────────────────────────────────────────
 export const upgradeBusiness = (bizId, cost, xpGain) =>
   fetch(`${BASE_URL}/business/upgrade`, {
     method:"POST", headers:headers(),
     body: JSON.stringify({ bizId, cost, xpGain }),
   }).then(r => r.json());
 
-// ── Investment ─────────────────────────────────────────────────
 export const buyPackage = (pkgId, price) =>
   fetch(`${BASE_URL}/investment/buy`, {
     method:"POST", headers:headers(),
