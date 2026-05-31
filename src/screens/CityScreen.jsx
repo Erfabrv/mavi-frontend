@@ -27,7 +27,9 @@ function BusinessCard({ def, level, bizLevel, coins, onUpgrade }) {
   const cost       = bizUpgradeCost(def, bizLevel);
   const canAfford  = coins >= cost;
   const currIncome = bizCurrentIncome(def, bizLevel);
-  const nextIncome = bizLevel < def.maxLevel ? def.table[bizLevel][1] : currIncome;
+  const nextIncome = (bizLevel < def.maxLevel && def.table?.[bizLevel]) 
+  ? def.table[bizLevel][1] 
+  : currIncome;
   const xpGain     = bizXPGain(def, bizLevel);
 
   return (
@@ -105,7 +107,7 @@ function BusinessCard({ def, level, bizLevel, coins, onUpgrade }) {
                 <CoinIcon size={12}/>
                 <span style={{ fontFamily:"'Orbitron',monospace", fontSize:11,
                   fontWeight:700, color: owned ? "#f5c518" : "#2a3a5a" }}>
-                  {owned ? fmtRial(currIncome) : fmtRial(def.table[0][1])}
+                  {owned ? fmtRial(currIncome) : fmtRial(def.table?.[0]?.[1] || 0)}
                 </span>
               </div>
               {owned && !isMaxed && (
@@ -203,14 +205,22 @@ export default function CityScreen() {
 
   // لود businesses از سرور
   useEffect(() => {
+  try {
     if (initialBusinesses?.length) {
       setBusinesses(prev => {
         const updated = { ...prev };
-        initialBusinesses.forEach(b => { updated[b.id] = b.level; });
+        initialBusinesses.forEach(b => {
+          if (b.id && typeof b.level === 'number') {
+            updated[b.id] = b.level;
+          }
+        });
         return updated;
       });
     }
-  }, [initialBusinesses]);
+  } catch(err) {
+    console.error("Business load error:", err);
+  }
+}, [initialBusinesses]);
 
   // محاسبه درآمد کل
   useEffect(() => {

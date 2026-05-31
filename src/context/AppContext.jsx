@@ -45,11 +45,15 @@ export function AppProvider({ children }) {
 
   // auto select character
   useEffect(() => {
-    const unlocked = getUnlocked(level);
-    if (!unlocked.length) return;
-    const stillValid = unlocked.find(c => c.id === activeCharId);
-    if (!stillValid) setActiveCharId(unlocked[unlocked.length - 1].id);
-  }, [level]);
+  if (!activeCharId || activeCharId === "lv1") {
+    const unlocked = ALL_CHARACTERS.filter(
+      c => !c.special && level >= c.unlockLevel
+    );
+    if (unlocked.length) {
+      setActiveCharId(unlocked[unlocked.length - 1].id);
+    }
+  }
+}, [level]);
 
   // energy recharge
   useEffect(() => {
