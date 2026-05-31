@@ -86,7 +86,7 @@ export default function HomeScreen() {
             marginBottom: "-10px",
             transition: "transform 0.15s cubic-bezier(.34,1.56,.64,1)",
           }}>
-          <CatDisplay character={activeChar} scale={0.8}/>
+          <CatDisplay character={activeChar} scale={0.82}/>
         </div>
         {tapEffects.map(t => (
           <div key={t.id} className="tap-effect"
