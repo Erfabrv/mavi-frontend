@@ -39,8 +39,9 @@ export default function HomeScreen() {
       : "linear-gradient(90deg,#cc1a1a,#ff4444)";
 
   return (
-    <div style={{ display:"flex", flexDirection:"column",
-      height:"100%", overflow:"hidden" }}>
+  <div style={{ display:"flex", flexDirection:"column",
+    height:"100%", overflow:"hidden",
+    background:"transparent" }}>
 
       {/* coin display */}
       <div className="coin-row">
@@ -83,7 +84,7 @@ export default function HomeScreen() {
           style={{
             transform: tapped ? "scale(0.95)" : "scale(0.9)",
             transformOrigin: "center bottom",
-            marginBottom: "-20px",
+            marginBottom: "-10px",
             transition: "transform 0.15s cubic-bezier(.34,1.56,.64,1)",
           }}>
           <CatDisplay character={activeChar} scale={0.85}/>
@@ -95,8 +96,8 @@ export default function HomeScreen() {
       </div>
 
       {/* energy bar */}
-<div style={{ padding:"0 0 16px", flexShrink:0, zIndex:10,
-  display:"flex", justifyContent:"center" }}>
+<div style={{ padding:"0 0 8px", flexShrink:0, zIndex:10,
+  display:"flex", justifyContent:"center",background:"#002bca" }}>
   <div style={{
     display:"flex", alignItems:"center", gap:8,
     background:"#1a2a4a99",

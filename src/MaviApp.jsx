@@ -61,7 +61,8 @@ function InnerApp() {
           <button className="faq-btn">FAQ</button>
         </div>
 
-       <div style={{ flex:1, overflowY:"auto", display:"flex", flexDirection:"column" }}>
+       <div style={{ flex:1, overflow:"hidden", display:"flex", flexDirection:"column", background:"transparent" }}>
+        
   {activeTab === "home"    && <HomeScreen/>}
   {activeTab === "city"    && <CityScreen/>}
   {activeTab === "income"  && <IncomeScreen/>}
