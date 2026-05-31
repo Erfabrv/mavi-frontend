@@ -88,7 +88,7 @@ export const CSS = `
   .energy-section{padding:0 20px 12px;position:relative;z-index:10;flex-shrink:0;}
   .energy-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
   .energy-num{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:#00D4FF;}
-  .energy-track{height:3px;background:transparent;border-radius:4px;overflow:visible;border:none;}
+  .energy-track{height:3px;border-radius:4px;overflow:visible;border:none;}
   .energy-fill{height:100%;border-radius:4px;transition:width .4s ease,background .6s ease;box-shadow:0 0 8px #00D4FF55;}
 
   .bottom-nav{background:#04040ecc;border-top:1px solid #0d1226;padding:10px 4px 22px;display:flex;justify-content:space-around;position:relative;z-index:20;backdrop-filter:blur(14px);}
