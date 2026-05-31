@@ -5,7 +5,7 @@ import { CoinIcon, CatDisplay } from "../components/SharedUI";
 import { MAX_ENERGY } from "../data/constants";
 
 export default function HomeScreen() {
-  const { coins, energy, totalIncome, cityIncome, activeChar, addCoins, useEnergy } = useApp();
+  const { coins, energy, totalIncome, activeChar, addCoins, useEnergy } = useApp();
   const { rem, ok, claim, fmt } = use24hTimer();
   const [tapped, setTapped]         = useState(false);
   const [tapEffects, setTapEffects] = useState([]);
@@ -44,17 +44,17 @@ export default function HomeScreen() {
 
       {/* coin display */}
       <div className="coin-row">
-        <CoinIcon size={46}/>
+        <CoinIcon size={40}/>
         <div className="coin-number">{coins.toLocaleString("en-US")}</div>
       </div>
 
       {/* income + claim */}
       <div className="income-wrap">
         <div className="income-card">
-          <div style={{ width:32, height:32, borderRadius:9,
+          <div style={{ width:28, height:28, borderRadius:8,
             background:"linear-gradient(135deg,#0d260a,#1a4010)",
             display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="#4ade80">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#4ade80">
               <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
             </svg>
           </div>
@@ -79,13 +79,14 @@ export default function HomeScreen() {
       {/* tap area */}
       <div className="cat-area" onClick={handleTap}>
         <div
-  className={tapped ? "cat-idle-paused" : "cat-idle"}
-  style={{
-  transform: "scale(0.8)",
-  transformOrigin: "center bottom",
-  marginBottom: "-30px",
-}}>
-          <CatDisplay character={activeChar} scale={0.92}/>
+          className={tapped ? "cat-idle-paused" : "cat-idle"}
+          style={{
+            transform: tapped ? "scale(0.77)" : "scale(0.8)",
+            transformOrigin: "center bottom",
+            marginBottom: "-30px",
+            transition: "transform 0.15s cubic-bezier(.34,1.56,.64,1)",
+          }}>
+          <CatDisplay character={activeChar} scale={1}/>
         </div>
         {tapEffects.map(t => (
           <div key={t.id} className="tap-effect"
@@ -94,26 +95,34 @@ export default function HomeScreen() {
       </div>
 
       {/* energy bar */}
-      <div className="energy-section">
-        <div className="energy-row">
+      <div style={{ padding:"0 20px 14px", flexShrink:0, zIndex:10 }}>
+        <div style={{ display:"flex", alignItems:"center",
+          justifyContent:"space-between", marginBottom:5 }}>
           <div style={{ display:"flex", alignItems:"center", gap:5 }}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="#00D4FF">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#00D4FF">
               <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
             </svg>
-            <span className="energy-num">{energy} / {MAX_ENERGY}</span>
+            <span style={{ fontFamily:"'Orbitron',monospace", fontSize:10,
+              fontWeight:700, color:"#00D4FF" }}>
+              {energy} / {MAX_ENERGY}
+            </span>
           </div>
           {energy === 0 && (
-            <span style={{ fontSize:10, color:"#cc3333",
+            <span style={{ fontSize:9, color:"#cc3333",
               fontFamily:"'Orbitron',monospace", letterSpacing:.5 }}>
               RECHARGING
             </span>
           )}
         </div>
-        <div className="energy-track">
-          <div className="energy-fill"
-            style={{ width:(energyPct*100)+"%", background:energyColor }}/>
+        <div style={{ height:2, background:"#ffffff11",
+          borderRadius:2, overflow:"hidden" }}>
+          <div style={{ height:"100%", width:(energyPct*100)+"%",
+            background:energyColor, borderRadius:2,
+            transition:"width .4s ease",
+            boxShadow:"0 0 6px #00D4FF55" }}/>
         </div>
       </div>
+
     </div>
   );
 }

@@ -85,10 +85,10 @@ export const CSS = `
   .cat-idle-paused{animation:none;}
   .tap-effect{position:absolute;pointer-events:none;animation:tapFloat .7s ease-out forwards;font-family:'Orbitron',monospace;font-size:20px;font-weight:700;color:#00D4FF;text-shadow:0 0 12px #00D4FF;z-index:50;}
 
-  .energy-section{padding:0 20px 8px;position:relative;z-index:10;flex-shrink:0;background:transparent;}
-  .energy-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;}
+  .energy-section{padding:0 20px 12px;position:relative;z-index:10;flex-shrink:0;}
+  .energy-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
   .energy-num{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:#00D4FF;}
-  .energy-track{height:6px;background:#06061088;border-radius:4px;overflow:hidden;}
+  .energy-track{height:3px;background:transparent;border-radius:4px;overflow:visible;border:none;}
   .energy-fill{height:100%;border-radius:4px;transition:width .4s ease,background .6s ease;box-shadow:0 0 8px #00D4FF55;}
 
   .bottom-nav{background:#04040ecc;border-top:1px solid #0d1226;padding:10px 4px 22px;display:flex;justify-content:space-around;position:relative;z-index:20;backdrop-filter:blur(14px);}
