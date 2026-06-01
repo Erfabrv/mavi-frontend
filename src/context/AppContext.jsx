@@ -1,27 +1,26 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
-import { MAX_ENERGY, MAX_LEVEL, getPlayerLevel, xpForNextLevel, totalXpForLevel, getUnlocked } from "../data/constants";
+import { MAX_ENERGY, MAX_LEVEL, getPlayerLevel, xpForNextLevel, totalXpForLevel, getUnlocked, BUSINESS_DEFS, bizCurrentIncome } from "../data/constants";
 import { ALL_CHARACTERS } from "../data/characters";
 import { loginUser } from "../services/api";
 
 const AppContext = createContext(null);
 
 export function AppProvider({ children }) {
-  const [coins, setCoins]                       = useState(5000000);
-  const [xp, setXp]                             = useState(0);
-  const [energy, setEnergy]                     = useState(MAX_ENERGY);
-  const [baseDailyIncome]                       = useState(0);
-  const [cityIncome, setCityIncome]             = useState(0);
-  const [walletBalance, setWalletBalance]       = useState(0);
-  const [walletHistory, setWalletHistory]       = useState([]);
-  const [activeCharId, setActiveCharId]         = useState("lv1");
-  const [purchasedChars, setPurchasedChars]     = useState([]);
+  const [coins, setCoins]                         = useState(5000000);
+  const [xp, setXp]                               = useState(0);
+  const [energy, setEnergy]                       = useState(MAX_ENERGY);
+  const [cityIncome, setCityIncome]               = useState(0);
+  const [walletBalance, setWalletBalance]         = useState(0);
+  const [walletHistory, setWalletHistory]         = useState([]);
+  const [activeCharId, setActiveCharId]           = useState("lv1");
+  const [purchasedChars, setPurchasedChars]       = useState([]);
   const [initialBusinesses, setInitialBusinesses] = useState([]);
-  const [loading, setLoading]                   = useState(true);
+  const [loading, setLoading]                     = useState(true);
 
   const level       = getPlayerLevel(xp);
   const xpInLevel   = xp - totalXpForLevel(level);
   const xpNeeded    = xpForNextLevel(level);
-  const totalIncome = baseDailyIncome + cityIncome;
+  const totalIncome = cityIncome;
   const isMaxLevel  = level >= MAX_LEVEL;
 
   // لود از بک‌اند
@@ -37,6 +36,13 @@ export function AppProvider({ children }) {
           setWalletHistory(data.user.walletHistory || []);
           setPurchasedChars(data.user.purchasedChars || []);
           setInitialBusinesses(data.user.businesses || []);
+
+          // محاسبه cityIncome از businesses سرور
+          const total = BUSINESS_DEFS.reduce((s, d) => {
+            const biz = data.user.businesses?.find(b => b.id === d.id);
+            return s + bizCurrentIncome(d, biz?.level || 0);
+          }, 0);
+          setCityIncome(total);
         }
       })
       .catch(err => console.error("Login failed:", err))
@@ -45,15 +51,15 @@ export function AppProvider({ children }) {
 
   // auto select character
   useEffect(() => {
-  if (!activeCharId || activeCharId === "lv1") {
-    const unlocked = ALL_CHARACTERS.filter(
-      c => !c.special && level >= c.unlockLevel
-    );
-    if (unlocked.length) {
-      setActiveCharId(unlocked[unlocked.length - 1].id);
+    if (!activeCharId || activeCharId === "lv1") {
+      const unlocked = ALL_CHARACTERS.filter(
+        c => !c.special && level >= c.unlockLevel
+      );
+      if (unlocked.length) {
+        setActiveCharId(unlocked[unlocked.length - 1].id);
+      }
     }
-  }
-}, [level]);
+  }, [level]);
 
   // energy recharge
   useEffect(() => {

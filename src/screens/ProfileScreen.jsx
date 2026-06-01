@@ -16,7 +16,8 @@ const TAG_COLORS = {
 // ── Characters screen ──────────────────────────────────────────
 function CharactersScreen({ onBack }) {
   const { level, coins, activeCharId, setActiveCharId, spendCoins } = useApp();
-  const [purchased, setPurchased] = useState([]);
+  const { purchasedChars, setPurchasedChars } = useApp();
+  const [purchased, setPurchased] = useState(purchasedChars || []);
   const [previewId, setPreviewId] = useState(activeCharId);
   const [bigErr,    setBigErr]    = useState(false);
 
@@ -48,6 +49,7 @@ function CharactersScreen({ onBack }) {
     if (res.success) {
       spendCoins(previewChar.price);
       setPurchased(p => [...p, previewChar.id]);
+      setPurchasedChars(p => [...p, previewChar.id]);
       setActiveCharId(previewChar.id);
     }
   } catch (err) {
